@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello world!</title>
+    <style>
+      th,
+      td {
+        border: 1px solid;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Planets Data</h1>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Mass (10^24kg)</th>
+        <th>Diameter (km)</th>
+        <th>Density (kg/m^3)</th>
+        <th>Gravity (m/s^2)</th>
+        <th>Length Of Day (hours)</th>
+        <th>Distance from sun (10^6km)</th>
+        <th>Mean Temperature (°C)</th>
+        <th>Number Of Moons</th>
+        <th>Notes</th>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <script>
+      fetch("/api/planet")
+        .then((response) => response.json())
+        .then((planet) => {
+          const tbody = document.querySelector("tbody");
+          planet.forEach((m) => {
+            const tr = document.createElement("tr");
+
+            const tdnama = document.createElement("td");
+            tdnama.textContent = m.Name;
+            tr.appendChild(tdnama);
+
+            const tdmas = document.createElement("td");
+            tdmas.textContent = m.Mass;
+            tr.appendChild(tdmas);
+
+            const tddiameter = document.createElement("td");
+            tddiameter.textContent = m.Diameter;
+            tr.appendChild(tddiameter);
+
+            const tddensity = document.createElement("td");
+            tddensity.textContent = m.Density;
+            tr.appendChild(tddensity);
+
+            const tdgravity = document.createElement("td");
+            tdgravity.textContent = m.Gravity;
+            tr.appendChild(tdgravity);
+
+            const tdlod = document.createElement("td");
+            tdlod.textContent = m.LOD;
+            tr.appendChild(tdlod);
+
+            const tddfs = document.createElement("td");
+            tddfs.textContent = m.DFS;
+            tr.appendChild(tddfs);
+
+            const tdmean = document.createElement("td");
+            tdmean.textContent = m.Mean;
+            tr.appendChild(tdmean);
+
+            const tdnom = document.createElement("td");
+            tdnom.textContent = m.NOM;
+            tr.appendChild(tdnom);
+
+            const tdnotes = document.createElement("td");
+            tdnotes.textContent = m.Notes;
+            tr.appendChild(tdnotes);
+
+            tbody.appendChild(tr);
+          });
+        });
+    </script>
+  </body>
+</html>
